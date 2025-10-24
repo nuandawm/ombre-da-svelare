@@ -1,62 +1,41 @@
 import Image from "next/image";
-
-interface Episode {
-  title: string;
-  episodeNumber: number;
-  sys: {
-    id: string;
-  };
-}
-
-const spaceId = process.env.CONTENTFUL_SPACE_ID;
-const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
-
-const query = `
-  query {
-    episodeCollection(where: { season: 1 }, order: episodeNumber_ASC) {
-      items {
-        sys {
-          id
-        }
-        title
-        episodeNumber
-      }
-    }
-  }
-`;
-
-async function getEpisodes() {
-  const res = await fetch(`https://graphql.contentful.com/content/v1/spaces/${spaceId}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify({ query })
-  });
-  const { data } = await res.json();
-  return data.episodeCollection.items;
-}
+import {Social} from "@/app/ui/social";
+import {getSpecificBasicContent} from "@/data/contentful-fetch";
+import {MenuButton} from "@/app/ui/MenuButton";
 
 export default async function Home() {
-  const episodes = await getEpisodes();
+  // const episodes = await getEpisodes();
+  const podcastDescription = await getSpecificBasicContent("podcast-description");
 
   return (
     <div className="font-sans">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center">
-        <h3>Ombre da svelare</h3>
+      <div className={"socials flex flex-row justify-end gap-[5px] p-2 bg-black"}>
+        <Social iconName={"facebook"} />
+        <Social iconName={"instagram"} />
+        <Social iconName={"email"} />
+      </div>
+      <header className="flex flex-row justify-between p-5 bg-indigo-950">
+        <h1>Ombre da svelare</h1>
+        <MenuButton />
+      </header>
+      <div className="logo flex flex-col items-center p-10 bg-black">
         <Image
-          src="/next.svg"
+          src="/ombre_logo.webp"
           alt="Ombre da svelare logo"
-          width={180}
-          height={38}
+          width={300}
+          height={300}
           priority
         />
-        <ul>
+      </div>
+      <main className="flex flex-col gap-[32px] row-start-2 p-10 bg-white text-black">
+        { podcastDescription?.content }
+        {/*
+         <ul>
           {episodes.map((episode: Episode) => (
             <li key={episode.sys.id}>{episode.title}</li>
           ))}
         </ul>
+         */}
       </main>
     </div>
   );
