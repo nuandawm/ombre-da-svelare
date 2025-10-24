@@ -1,5 +1,13 @@
 import Image from "next/image";
 
+interface Episode {
+  title: string;
+  episodeNumber: number;
+  sys: {
+    id: string;
+  };
+}
+
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 
@@ -45,7 +53,7 @@ export default async function Home() {
           priority
         />
         <ul>
-          {episodes.map((episode: any) => (
+          {episodes.map((episode: Episode) => (
             <li key={episode.sys.id}>{episode.title}</li>
           ))}
         </ul>
