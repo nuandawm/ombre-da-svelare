@@ -1,7 +1,9 @@
 import Image from "next/image";
 import {Social} from "@/app/ui/social";
 import {getSpecificBasicContent} from "@/data/contentful-fetch";
-import {MenuButton} from "@/app/ui/MenuButton";
+import {MenuButton} from "@/app/ui/menu-button";
+import {SpotifyWidget} from "@/app/ui/spotify-widget";
+import {AppleWidget} from "@/app/ui/apple-widget";
 
 export default async function Home() {
   // const episodes = await getEpisodes();
@@ -37,6 +39,11 @@ export default async function Home() {
         </ul>
          */}
       </main>
+      <div className="playerWidgets flex flex-col gap-5 p-5">
+        <SpotifyWidget />
+
+        <AppleWidget />
+      </div>
     </div>
   );
 }
