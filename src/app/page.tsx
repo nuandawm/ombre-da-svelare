@@ -9,12 +9,12 @@ export default async function Home() {
 
   return (
     <div className="font-sans">
-      <div className={"socials flex flex-row justify-end gap-[5px] p-2 bg-black"}>
+      <div className={"socials flex flex-row justify-end gap-[5px] p-2 bg-black text-white"}>
         <Social iconName={"facebook"} />
         <Social iconName={"instagram"} />
         <Social iconName={"email"} />
       </div>
-      <header className="flex flex-row justify-between p-5 bg-indigo-950">
+      <header className="flex flex-row justify-between p-5 bg-indigo-950 text-white">
         <h1>Ombre da svelare</h1>
         <MenuButton />
       </header>
