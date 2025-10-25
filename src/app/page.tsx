@@ -1,27 +1,22 @@
 import Image from "next/image";
-import {Social} from "@/app/ui/social";
 import {getSpecificBasicContent} from "@/data/contentful-fetch";
-import {MenuButton} from "@/app/ui/menu-button";
 import {SpotifyWidget} from "@/app/ui/spotify-widget";
 import {AppleWidget} from "@/app/ui/apple-widget";
+import {Social} from "@/app/ui/social";
 
 export default async function Home() {
-  // const episodes = await getEpisodes();
   const podcastDescription = await getSpecificBasicContent("podcast-description");
 
   return (
-    <div className="font-sans">
-      <div className={"socials flex flex-row justify-end gap-[5px] p-2 bg-black text-white"}>
-        <Social iconName={"facebook"} />
+    <>
+      <div className="socials flex flex-row justify-end gap-[5px] p-2 bg-black text-white">
         <Social iconName={"instagram"} />
         <Social iconName={"email"} />
+        <Social iconName={"spotify"} />
       </div>
-      <header className="flex flex-row justify-between p-5 bg-indigo-950 text-white">
-        <h1>Ombre da svelare</h1>
-        <MenuButton />
-      </header>
-      <div className="logo flex flex-col items-center p-10 bg-black">
+      <div className="logo flex flex-col items-center p-10 bg-wenge">
         <Image
+          className="shadow-black shadow-2xl"
           src="/ombre_logo.webp"
           alt="Ombre da svelare logo"
           width={300}
@@ -29,21 +24,14 @@ export default async function Home() {
           priority
         />
       </div>
-      <main className="flex flex-col gap-[32px] row-start-2 p-10 bg-white text-black">
+      <div className="flex flex-col gap-[32px] row-start-2 p-10 bg-white text-black">
         { podcastDescription?.content }
-        {/*
-         <ul>
-          {episodes.map((episode: Episode) => (
-            <li key={episode.sys.id}>{episode.title}</li>
-          ))}
-        </ul>
-         */}
-      </main>
+      </div>
       <div className="playerWidgets flex flex-col gap-5 p-5">
         <SpotifyWidget />
 
         <AppleWidget />
       </div>
-    </div>
+    </>
   );
 }

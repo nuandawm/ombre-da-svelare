@@ -27,10 +27,10 @@ async function fetchData(query: string, collectionName: string) {
   return data[collectionName].items;
 }
 
-export async function getEpisodes(): Promise<Episode[]> {
+export async function getEpisodes(season: number): Promise<Episode[]> {
   return fetchData(`
     query {
-      episodeCollection(where: { season: 1 }, order: episodeNumber_ASC) {
+      episodeCollection(where: { season: ${season}}, order: episodeNumber_ASC) {
         items {
           sys {
             id
