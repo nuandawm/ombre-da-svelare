@@ -1,4 +1,6 @@
 import {Episode, getEpisodes} from "@/data/contentful-fetch";
+import {Separator} from "@/app/ui/separator";
+import {EpisodeComponent} from "@/app/seasons/[slug]/ui/episode";
 
 export default async function SeasonPage(
   { params }: { params: Promise<{ slug: string }>}
@@ -7,11 +9,16 @@ export default async function SeasonPage(
   const episodes = await getEpisodes(parseInt(slug));
 
   return <div className="flex flex-col gap-[32px] row-start-2 p-10 bg-white text-black">
-    <h1>Season {slug}</h1>
-    <ul>
+    <div>
+      <h1 className="flex justify-center uppercase">
+        Stagione {slug}
+      </h1>
+      <Separator />
+    </div>
+    <div className="flex flex-col gap-[16px]">
       {episodes.map((episode: Episode) => (
-        <li key={episode.sys.id}>{episode.title}</li>
+        <EpisodeComponent key={episode.sys.id} episode={episode} />
       ))}
-    </ul>
+    </div>
   </div>;
 }

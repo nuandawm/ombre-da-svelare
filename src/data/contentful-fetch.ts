@@ -1,11 +1,25 @@
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 
-export interface Episode {
-  title: string;
-  episodeNumber: number;
+export interface EpisodeSource {
   sys: {
     id: string;
+  };
+  title: string;
+  url: string;
+}
+
+export interface Episode {
+  sys: {
+    id: string;
+  };
+  title: string;
+  spotifyLink: string;
+  season: number;
+  episodeNumber: number;
+  description: string;
+  sourcesCollection: {
+    items: Array<EpisodeSource>;
   };
 }
 
@@ -35,8 +49,19 @@ export async function getEpisodes(season: number): Promise<Episode[]> {
           sys {
             id
           }
-          title
-          episodeNumber
+          title,
+          spotifyLink,
+          episodeNumber,
+          description
+          sourcesCollection {
+            items {
+              sys {
+                id
+              }
+              title,
+              url
+            }
+          }
         }
       }
     }

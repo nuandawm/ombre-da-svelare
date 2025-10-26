@@ -1,5 +1,6 @@
 import { FaXmark } from "react-icons/fa6";
 import Link from "next/link";
+import {Separator} from "@/app/ui/separator";
 
 export type MenuState = "opened" | "closed" | "initial";
 
@@ -22,7 +23,7 @@ export function MenuOverlay({ isMenuOpen, onClose }: MenuOverlayProps) {
 
   return (
     <div
-      className={`menuOverlay absolute h-screen w-screen flex flex-col bg-purple-950 text-white ${getMenuClassName()}`}
+      className={`menuOverlay absolute h-screen w-screen z-1 flex flex-col bg-purple-950 text-white ${getMenuClassName()}`}
       style={{ pointerEvents: isMenuOpen === 'opened' ? "auto" : "none" }}
     >
       <div className="flex flex-row justify-between p-5 bg-purple-950">
@@ -32,12 +33,19 @@ export function MenuOverlay({ isMenuOpen, onClose }: MenuOverlayProps) {
         </button>
       </div>
       <div className="flex flex-col grow bg-linear-to-b from-purple-950 from-0% to-black to-20%">
-        <div className="flex flex-col pt-5 items-center">
-          <h3>Episodi</h3>
+        <div className="flex flex-col pt-16 items-center">
+          <Link href="/" onClick={onClose}>
+            Home
+          </Link>
         </div>
-        <hr
-          className="my-5 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"/>
-        <div className="flex flex-col items-center">
+        <Separator />
+        <div className="flex flex-col pt-5 items-center">
+          <Link href="/seasons" onClick={onClose}>
+            Episodi
+          </Link>
+        </div>
+        <Separator />
+        <div className="flex flex-col pt-5 items-center">
           <Link href="/seasons/1" onClick={onClose}>
             Stagione 1
           </Link>

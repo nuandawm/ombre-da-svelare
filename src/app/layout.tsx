@@ -31,7 +31,7 @@ export default function RootLayout({
       >
       <div className="font-sans flex flex-col min-h-screen">
         <InteractiveHeader />
-        <main className="flex-grow">
+        <main className="flex-grow bg-white text-black">
           {children}
         </main>
         <footer className="flex flex-row justify-center gap-[5px] p-2 bg-black text-white">
