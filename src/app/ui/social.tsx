@@ -1,9 +1,9 @@
-import {FaEnvelope, FaInstagram, FaSpotify} from "react-icons/fa6";
+import {FaEnvelope, FaInstagram, FaPodcast, FaSpotify} from "react-icons/fa6";
 import Link from "next/link";
 import {JSX} from "react";
 import {IconType} from "react-icons";
 
-type IconName = "spotify" | "instagram" | "email";
+type IconName = "spotify" | "instagram" | "email" | "apple";
 
 const socialData: Record<IconName, { icon: IconType, link: string }> = {
   instagram: {
@@ -17,6 +17,10 @@ const socialData: Record<IconName, { icon: IconType, link: string }> = {
   spotify: {
     icon: FaSpotify,
     link: "https://open.spotify.com/show/5Bd3bw7uq04N4KOGbj8AMH?si=65f273a3d76448c2",
+  },
+  apple: {
+    icon: FaPodcast,
+    link: "https://podcasts.apple.com/gb/podcast/ombre-da-svelare/id1846595885"
   }
 };
 

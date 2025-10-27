@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {InteractiveHeader} from "@/app/ui/interactive-header";
-import {Social} from "@/app/ui/social";
+import {Socials} from "@/app/ui/socials";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +35,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="flex flex-row justify-center gap-[5px] p-2 bg-black text-white">
-          <Social iconName={"instagram"} />
-          <Social iconName={"email"} />
-          <Social iconName={"spotify"} />
+          <Socials />
         </footer>
       </div>
       </body>

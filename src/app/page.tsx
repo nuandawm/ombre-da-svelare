@@ -2,7 +2,7 @@ import Image from "next/image";
 import {getSpecificBasicContent} from "@/data/contentful-fetch";
 import {SpotifyWidget} from "@/app/ui/spotify-widget";
 import {AppleWidget} from "@/app/ui/apple-widget";
-import {Social} from "@/app/ui/social";
+import {Socials} from "@/app/ui/socials";
 
 export default async function Home() {
   const podcastDescription = await getSpecificBasicContent("podcast-description");
@@ -10,9 +10,7 @@ export default async function Home() {
   return (
     <>
       <div className="socials flex flex-row justify-end gap-[5px] p-2 bg-black text-white">
-        <Social iconName={"instagram"} />
-        <Social iconName={"email"} />
-        <Social iconName={"spotify"} />
+        <Socials />
       </div>
       <div className="logo flex flex-col items-center p-10 bg-wenge">
         <Image
